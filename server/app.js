@@ -2,14 +2,14 @@ require("@babel/register");
 require("dotenv").config();
 const express = require("express");
 
-const serverConfig = require("./config/serverCofnig");
-const indexRouter = require("./routes/index.routes");
+const serverConfig = require("./config/serverConfig");
+// const indexRouter = require("./routes/index.routes");
 
 const app = express();
 
 serverConfig(app);
 
-app.use("/", indexRouter);
+// app.use("/", indexRouter);
 
 const PORT = 4000;
 
