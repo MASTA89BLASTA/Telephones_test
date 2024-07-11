@@ -1,2 +1,7 @@
-export const ADD_TELEPHONE = 'ADD_TELEPHONE';
-export const GET_TELEPHONES = 'GET_TELEPHONES';
+type Telephone = {
+  code: string,
+  countryName: string,
+  flag: string
+}
+
+export default Telephone;

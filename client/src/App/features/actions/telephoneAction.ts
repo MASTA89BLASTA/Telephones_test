@@ -1,11 +1,13 @@
-import { ADD_TELEPHONE, GET_TELEPHONES } from "./telephoneTypes";
+import type Telephone from "./telephoneTypes";
 
-export const addTelephone = (payload) => ({
-  type: ADD_TELEPHONE,
-  payload
-});
+type TelephoneAction =
+  | {
+      type: "GET_TELEPHONES";
+      payload: Telephone[];
+    }  
+  | {
+      type: "ADD_TELEPHONE";
+      payload: Telephone;
+    };
 
-export const getTelephones = (payload) => ({
-  type: GET_TELEPHONES,
-  payload
-});
+export default TelephoneAction;
