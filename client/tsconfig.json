@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "baseUrl": "src",
+    "typeRoots": ["./node_modules/@types"],
+    "resolveJsonModule": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "exclude": ["node_modules", "src//*.png"],
+  "include": [
+    "src//*.ts",
+    "src//*.tsx",
+    "src//*.json",
+    "src/index.tsx",
+    "src/features/components/images.d.ts",
+    ".eslintrc.cjs"
+  ]
+}

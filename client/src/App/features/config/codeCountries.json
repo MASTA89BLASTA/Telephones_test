@@ -1,0 +1,19 @@
+{
+  "countryCode": [
+    {
+      "code": "+49",
+      "countryName": "GERMANY",
+      "flag": "🇩🇪"
+    },
+    {
+      "code": "+7",
+      "countryName": "RUSSIA",
+      "flag": "🇷🇺"
+    },
+    {
+      "code": "+1",
+      "countryName": "USA",
+      "flag": "🇺🇸"
+    }
+  ]
+}

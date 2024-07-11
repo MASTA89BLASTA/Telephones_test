@@ -1,0 +1,2 @@
+export const ADD_TELEPHONE = 'ADD_TELEPHONE';
+export const GET_TELEPHONES = 'GET_TELEPHONES';
