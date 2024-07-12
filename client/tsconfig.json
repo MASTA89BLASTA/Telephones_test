@@ -19,13 +19,14 @@
       "module": "CommonJS"
     }
   },
-  "exclude": ["node_modules", "src//*.png"],
+  "exclude": ["node_modules", "webpack.config.ts", "src//*.png"],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.json",
     "src/index.tsx",
     "src/features/components/images.d.ts",
-    ".eslintrc.cjs"
+    ".eslintrc.cjs",
+    "webpack.config.ts"
   ]
 }

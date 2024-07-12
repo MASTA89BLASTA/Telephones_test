@@ -1,13 +1,14 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Layout from "./Layout";
+import TelephoneForm from "./features/components/TelephoneForm/TelephoneForm";
+
+
 
 function App(): JSX.Element {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-      </Route>
-    </Routes>
+    <div className="telephone__wrapper">
+      <h1>Telephones</h1>
+      <TelephoneForm/>
+    </div>
   );
 }
 

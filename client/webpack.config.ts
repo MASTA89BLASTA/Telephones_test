@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import path from "path";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
@@ -5,9 +6,10 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import type { Configuration as WebpackConfiguration } from "webpack";
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 
+
 type Mode = "production" | "development";
 
-interface EnvVariables {
+type EnvVariables ={
   mode: Mode;
   port: number;
 }
@@ -37,14 +39,14 @@ export default (
       static: {
         directory: path.join(__dirname, "public"),
       },
-      port: env.port ?? 4000,
+      port: env.port ?? 3000,
       open: true,
       compress: true,
       historyApiFallback: true,
-      proxy: {
-        "/api": "http://localhost:4000",
-        "/img": "http://localhost:4000",
-      },
+      // proxy: {
+      //   "/api": "http://localhost:4000",
+      //   "/img": "http://localhost:4000",
+      // },
     },
     plugins: [
       new HtmlWebpackPlugin({

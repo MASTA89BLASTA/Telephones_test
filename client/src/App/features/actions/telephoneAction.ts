@@ -1,4 +1,4 @@
-import type Telephone from "./telephoneTypes";
+import type { Telephone } from "./telephoneTypes";
 
 type TelephoneAction =
   | {

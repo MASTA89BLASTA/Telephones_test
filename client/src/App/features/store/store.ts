@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import telephoneReducer from "./reducers/telephoneReducers"
 
 const rootReducer = combineReducers({
-  telephoneReducer,
+  telephone: telephoneReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools());

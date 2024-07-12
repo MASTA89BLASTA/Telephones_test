@@ -6,7 +6,8 @@ export const initState: TelephoneState = {
   telephoneList: []
 }
 
-function reducer( action: TelephoneAction, state: TelephoneState = initState): TelephoneState {
+// eslint-disable-next-line @typescript-eslint/default-param-last
+function reducer( state: TelephoneState = initState, action: TelephoneAction,): TelephoneState {
   switch(action.type) {
     case "GET_TELEPHONES":
       return {

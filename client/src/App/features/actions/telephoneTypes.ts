@@ -1,7 +1,9 @@
-type Telephone = {
+export type Telephone = {
   code: string,
   countryName: string,
   flag: string
 }
 
-export default Telephone;
+export type CountryData = {
+  countryCode: Telephone[];
+};

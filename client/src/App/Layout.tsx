@@ -1,12 +1,13 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+// import React from "react";
+// import { Outlet } from "react-router-dom";
 
-function Layout(): JSX.Element {
-  return (
-    <>
-      <Outlet />
-    </>
-  );
-}
+// function Layout(): JSX.Element {
+//   return (
+//     <>
 
-export default Layout;
+//       <Outlet />
+//     </>
+//   );
+// }
+
+// export default Layout;
