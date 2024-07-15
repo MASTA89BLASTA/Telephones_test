@@ -10,16 +10,19 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "dist",
-    "baseUrl": "src",
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["*"]
+    },
     "typeRoots": ["./node_modules/@types"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,  
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
   },
-  "exclude": ["node_modules", "webpack.config.ts", "src//*.png"],
+  "exclude": ["node_modules", "src//*.png"],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
