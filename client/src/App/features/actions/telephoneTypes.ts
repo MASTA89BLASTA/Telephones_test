@@ -1,7 +1,8 @@
 export type Telephone = {
   code: string,
   countryName: string,
-  flag: string
+  flag: string,
+  number: string
 }
 
 export type CountryData = {

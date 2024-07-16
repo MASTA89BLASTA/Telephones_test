@@ -18,6 +18,7 @@ type TelephoneSelectorProps = {
 
 function TelephoneSelector({ value, onChange }: TelephoneSelectorProps): JSX.Element {
   const { codeCountries } = countries as CountryData;
+
   return (
     <select value={value} onChange={onChange}>
        {codeCountries.map((codeCountry: Telephone) => (
