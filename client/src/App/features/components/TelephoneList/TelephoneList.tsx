@@ -4,6 +4,7 @@ import type { RootState } from "../../store/store";
 import { useAppDispatch } from "../../store/store";
 import TelephoneItem from "../TelephonesItem/TelephoneItem";
 import { getTelephones } from "../../actions/telephoneAction";
+import { loadTelephones } from "../../api/api";
 
 function TelephoneList(): JSX.Element {
   const telephoneList = useSelector(
@@ -12,7 +13,12 @@ function TelephoneList(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTelephones());
+    loadTelephones()
+      .then(data => {
+        console.log(data);
+        dispatch(getTelephones(data));
+      })
+      .catch(e => console.log(e));
   }, [dispatch]);
 
   return (
@@ -21,7 +27,7 @@ function TelephoneList(): JSX.Element {
         {telephoneList.length ? (
           telephoneList.map((telephone, index) => (
             <TelephoneItem
-              key={telephone.code}
+              key={telephone.id}
               number={telephone.number}
               index={index}
               code={telephone.code}

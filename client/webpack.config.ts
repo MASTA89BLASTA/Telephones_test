@@ -6,13 +6,12 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import type { Configuration as WebpackConfiguration } from "webpack";
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 
-
 type Mode = "production" | "development";
 
-type EnvVariables ={
+type EnvVariables = {
   mode: Mode;
   port: number;
-}
+};
 
 export default (
   env: EnvVariables
@@ -43,10 +42,14 @@ export default (
       open: true,
       compress: true,
       historyApiFallback: true,
-      // proxy: {
-      //   "/api": "http://localhost:4000",
-      //   "/img": "http://localhost:4000",
-      // },
+      proxy: {
+        "/api": {
+          target: "http://localhost:4000",
+          changeOrigin: true,
+          logLevel: "debug"
+        }
+        // "/img": "http://localhost:4000",
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({

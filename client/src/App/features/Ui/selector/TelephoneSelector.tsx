@@ -3,21 +3,13 @@ import type { Telephone } from "../../actions/telephoneTypes";
 import countries from "../../config/codeCountries.json";
 
 
-type CountryData = {
-  codeCountries: {
-    code: string;
-    countryName: string;
-    flag: string;
-  }[];
-};
-
 type TelephoneSelectorProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 function TelephoneSelector({ value, onChange }: TelephoneSelectorProps): JSX.Element {
-  const { codeCountries } = countries as CountryData;
+  const { codeCountries } = countries as { codeCountries: Telephone[] };
 
   return (
     <select value={value} onChange={onChange}>

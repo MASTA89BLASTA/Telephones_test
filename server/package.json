@@ -28,6 +28,7 @@
     "@babel/register": "^7.22.15",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
@@ -40,6 +41,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sequelize": "^6.37.3",
-    "sequelize-cli": "^6.6.2"
+    "sequelize-cli": "^6.6.2",
+    "socket.io": "^4.7.5",
+    "ws": "^8.18.0"
   }
 }

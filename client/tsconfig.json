@@ -15,11 +15,12 @@
       "*": ["*"]
     },
     "typeRoots": ["./node_modules/@types"],
-    "resolveJsonModule": true,  
+    "resolveJsonModule": true
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS"
+      "module": "CommonJS",
+      "types": ["uuid"]
     }
   },
   "exclude": ["node_modules", "src//*.png"],

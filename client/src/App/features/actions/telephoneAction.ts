@@ -15,9 +15,9 @@ export const addTelephone = (telephone: Telephone): { type: string; payload: Tel
   payload: telephone,
 });
 
-export const getTelephones = (): {type: string, payload: Telephone[]} => ({
+export const getTelephones = (telephones: Telephone[]): {type: string, payload: Telephone[]} => ({
   type: "GET_TELEPHONES",
-  payload: [],
+  payload: telephones,
 });
 
 export default TelephoneAction;

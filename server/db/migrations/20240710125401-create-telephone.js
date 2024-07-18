@@ -9,11 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      country: {
-        type: Sequelize.TEXT,
-        allowNull: false,
-      },
-      codeCountry: {
+      code: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
@@ -21,10 +17,15 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      countryName: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
       flag: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -4,11 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Telephone extends Model {}
   Telephone.init(
     {
-      country: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      codeCountry: {
+      code: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
@@ -16,10 +12,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      countryName: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
       flag: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      
     },
     {
       sequelize,
