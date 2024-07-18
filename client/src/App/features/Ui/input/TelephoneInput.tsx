@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 type TelephoneInputProps = {
   value: string,
@@ -21,6 +21,7 @@ function TelephoneInput({ value, onChange, setErrorMessage }: TelephoneInputProp
     }
     onChange(event);
   };
+  
   return (
     <input type="text" value={value} onChange={handleChange} />
   );

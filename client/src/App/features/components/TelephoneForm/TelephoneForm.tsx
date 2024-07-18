@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import React, { useState } from "react";
 // import io from "socket.io-client";
-import { Telephone } from "../../actions/telephoneTypes";
+import type { Telephone } from "../../actions/telephoneTypes";
 import { addTelephone } from "../../actions/telephoneAction";
 import TelephoneSelector from "../../Ui/selector/TelephoneSelector";
 import TelephoneInput from "../../Ui/input/TelephoneInput";
 import TelephoneButton from "../../Ui/button/TelephoneButton";
 import countries from "../../config/codeCountries.json";
 import { useAppDispatch } from "../../store/store";
+import { addNewTelephone } from "../../api/api";
 
 function TelephoneForm(): JSX.Element {
   const [inputError, setErrorMessage] = useState<string>("");
@@ -35,25 +35,15 @@ function TelephoneForm(): JSX.Element {
     };
 
     try {
-      const response = await fetch("http://localhost:4000/api/telephones", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newTelephone),
-      });
-
-      const data = await response.json();
-      console.log(data, `erser`);
+      const data = await addNewTelephone(newTelephone);
       dispatch(addTelephone(data));
       setTelephoneNumber("");
       setErrorMessage("");
-      console.log("Submitted:", selectedCodeCountry, number);
     } catch (error) {
-      console.error("Ошибка при отправке данных:", error);
       setErrorMessage("Ошибка при отправке данных");
     }
   };
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <TelephoneSelector
