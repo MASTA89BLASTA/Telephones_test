@@ -9,52 +9,50 @@ import TelephoneButton from "../../Ui/button/TelephoneButton";
 import countries from "../../config/codeCountries.json";
 import { useAppDispatch } from "../../store/store";
 
-
 function TelephoneForm(): JSX.Element {
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  
-  const [selectedCodeCountry, setSelectedCodeCountry] = useState<string>(countries.codeCountries[1].code);
+  const [inputError, setErrorMessage] = useState<string>("");
+  const [selectedCodeCountry, setSelectedCodeCountry] = useState<string>(
+    countries.codeCountries[1].code
+  );
   const [number, setTelephoneNumber] = useState<string>("");
   const dispatch = useAppDispatch();
 
-
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
-    if (!number) {
-      setErrorMessage("Поле ввода не может быть пустым");
+    if (inputError) {
+      setErrorMessage(inputError);
       return;
     }
     const selectedCountry: Telephone | undefined = countries.codeCountries.find(
       (country: Telephone) => country.code === selectedCodeCountry
     );
-    
+
     const newTelephone: Telephone = {
       code: selectedCountry.code,
       number,
       countryName: selectedCountry.countryName,
-      flag: selectedCountry.flag
+      flag: selectedCountry.flag,
     };
 
     try {
       const response = await fetch("http://localhost:4000/api/telephones", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newTelephone)
+        body: JSON.stringify(newTelephone),
       });
-      
+
       const data = await response.json();
-      console.log(data, `erser`)
+      console.log(data, `erser`);
       dispatch(addTelephone(data));
       setTelephoneNumber("");
-      setErrorMessage(""); 
+      setErrorMessage("");
       console.log("Submitted:", selectedCodeCountry, number);
     } catch (error) {
-      console.error("Error submitting telephone:", error);
-      setErrorMessage("Error submitting telephone");
+      console.error("Ошибка при отправке данных:", error);
+      setErrorMessage("Ошибка при отправке данных");
     }
-    
   };
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -62,11 +60,16 @@ function TelephoneForm(): JSX.Element {
         value={selectedCodeCountry}
         onChange={e => setSelectedCodeCountry(e.target.value)}
       />
-      <TelephoneInput value={number} onChange={e => setTelephoneNumber(e.target.value)} setErrorMessage={setErrorMessage}/>
+      <TelephoneInput
+        value={number}
+        onChange={e => setTelephoneNumber(e.target.value)}
+        setErrorMessage={setErrorMessage}
+      />
       <TelephoneButton />
-      <div className="" style={{ color: 'red' }}>{errorMessage}</div>
+      <div className="" style={{ color: "red" }}>
+        {inputError}
+      </div>
     </form>
-    
   );
 }
 
@@ -74,7 +77,7 @@ export default TelephoneForm;
 
 // const socket = io("http://localhost:4000", {
 //   transports: ["websocket", "polling"],
-//   withCredentials: true, 
+//   withCredentials: true,
 // });
 
 // function TelephoneForm(): JSX.Element {

@@ -10,15 +10,15 @@ function TelephoneInput({ value, onChange, setErrorMessage }: TelephoneInputProp
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const input = event.target.value.trim();
-    let error = "";
-    if (!input) {
-      error = "Поле ввода не может быть пустым";
+    if (input === "") {
+      setErrorMessage("Поле ввода не может быть пустым");
     } else if (!/^\d+$/.test(input)) {
-      error = "Можно ввести только цифры";
+      setErrorMessage("Можно ввести только цифры");
     } else if (input.length < 3 || input.length > 10) {
-      error = "Введите от 3 до 10 чисел";
-    } 
-    setErrorMessage(error);
+      setErrorMessage("Введите от 3 до 10 чисел");
+    } else {
+      setErrorMessage(""); 
+    }
     onChange(event);
   };
   return (
