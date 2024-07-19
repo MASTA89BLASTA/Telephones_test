@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { ValidationError } = require("sequelize");
 const { Telephone } = require("../../db/models");
 
+
 router.route("/").get(async (req, res) => {
   try {
     const allTelephones = await Telephone.findAll();
@@ -17,7 +18,7 @@ router.route("/").post(async (req, res) => {
     return res.status(400).json({ error: "Missing required fields" });
   }
   try {
-    console.log("Received data:", req.body);
+    console.log("Полученные данные:", req.body);
 
     const newTelephone = await Telephone.create({
       code: code,
@@ -25,7 +26,7 @@ router.route("/").post(async (req, res) => {
       countryName: countryName,
       flag,
     });
-    console.log("Created telephone:", newTelephone);
+    console.log("Создан телефон:", newTelephone);
     res.status(201).json(newTelephone);
   } catch (error) {
     if (error instanceof ValidationError) {

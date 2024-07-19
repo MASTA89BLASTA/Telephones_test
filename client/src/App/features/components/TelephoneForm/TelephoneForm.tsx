@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-// import io from "socket.io-client";
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 import type { Telephone } from "../../actions/telephoneTypes";
 import { addTelephone } from "../../actions/telephoneAction";
 import TelephoneSelector from "../../Ui/selector/TelephoneSelector";
@@ -7,8 +7,8 @@ import TelephoneInput from "../../Ui/input/TelephoneInput";
 import TelephoneButton from "../../Ui/button/TelephoneButton";
 import countries from "../../config/codeCountries.json";
 import { useAppDispatch } from "../../store/store";
-import { addNewTelephone } from "../../api/api";
 
+const socket = io("http://localhost:4000");
 function TelephoneForm(): JSX.Element {
   const [inputError, setErrorMessage] = useState<string>("");
   const [selectedCodeCountry, setSelectedCodeCountry] = useState<string>(
@@ -16,6 +16,18 @@ function TelephoneForm(): JSX.Element {
   );
   const [number, setTelephoneNumber] = useState<string>("");
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const handleNewTelephone = (newTelephone: Telephone): void => {
+      console.log("Received new telephone:", newTelephone);
+      dispatch(addTelephone(newTelephone));
+    };
+    socket.on("message", handleNewTelephone);
+
+    return () => {
+      socket.off("message", handleNewTelephone);
+    };
+  }, [dispatch]);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
@@ -35,8 +47,7 @@ function TelephoneForm(): JSX.Element {
     };
 
     try {
-      const data = await addNewTelephone(newTelephone);
-      dispatch(addTelephone(data));
+      socket.emit("message", newTelephone);
       setTelephoneNumber("");
       setErrorMessage("");
     } catch (error) {
@@ -64,62 +75,3 @@ function TelephoneForm(): JSX.Element {
 }
 
 export default TelephoneForm;
-
-// const socket = io("http://localhost:4000", {
-//   transports: ["websocket", "polling"],
-//   withCredentials: true,
-// });
-
-// function TelephoneForm(): JSX.Element {
-//   const [errorMessage, setErrorMessage] = useState<string>("");
-//   const { codeCountries } = countries;
-//   const [selectedCodeCountry, setSelectedCodeCountry] = useState<string>(
-//     codeCountries[1].code
-//   );
-//   const [number, setTelephoneNumber] = useState<string>("");
-//   const dispatch = useAppDispatch();
-
-//   useEffect(() => {
-//     socket.on("message", newTelephone => {
-//       dispatch(addTelephone(newTelephone));
-//     });
-//   });
-//   const handleSubmit: React.FormEventHandler<HTMLFormElement> = event => {
-//     event.preventDefault();
-//     if (!number) {
-//       setErrorMessage("Поле ввода не может быть пустым");
-//       return;
-//     }
-//     const selectedCountry: Telephone | undefined = codeCountries.find(
-//       (country: Telephone) => country.code === selectedCodeCountry
-//     );
-//     socket.emit("message", {
-//       code: selectedCountry?.code,
-//       number,
-//       countryName: selectedCountry?.countryName,
-//       flag: selectedCountry?.flag,
-//     });
-//     setTelephoneNumber("");
-
-//     console.log("Submitted:", selectedCodeCountry, number);
-//   };
-//   return (
-//     <form className="form" onSubmit={handleSubmit}>
-//       <TelephoneSelector
-//         value={selectedCodeCountry}
-//         onChange={e => setSelectedCodeCountry(e.target.value)}
-//       />
-//       <TelephoneInput
-//         value={number}
-//         onChange={e => setTelephoneNumber(e.target.value)}
-//         setErrorMessage={setErrorMessage}
-//       />
-//       <TelephoneButton />
-//       <div className="" style={{ color: "red" }}>
-//         {errorMessage}
-//       </div>
-//     </form>
-//   );
-// }
-
-// export default TelephoneForm;
