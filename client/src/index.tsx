@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.scss";
+import "./index.css";
 import { Provider } from "react-redux";
-import store from "App/features/store/store";
+import store from "./App/features/store/store";
 import App from "./App/App";
 
 

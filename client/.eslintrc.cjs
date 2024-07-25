@@ -24,6 +24,7 @@ module.exports = {
     "default-param-last": "off",
     "no-void": "off",
     "no-param-reassign": "off",
+    '@typescript-eslint/no-var-requires': 'off',
     "react/require-default-props": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "consistent-return": "off",
@@ -54,4 +55,13 @@ module.exports = {
     "jsx-a11y/label-has-associated-control": "off",
     "@typescript-eslint/no-misused-promises": "off",
   },
+  ignorePatterns: ['.eslintrc.cjs'],
+  overrides: [
+    {
+      files: ['webpack.config.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
 };

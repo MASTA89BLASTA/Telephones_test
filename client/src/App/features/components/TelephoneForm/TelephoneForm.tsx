@@ -7,9 +7,11 @@ import TelephoneInput from "../../Ui/input/TelephoneInput";
 import TelephoneButton from "../../Ui/button/TelephoneButton";
 import countries from "../../config/codeCountries.json";
 import { useAppDispatch } from "../../store/store";
+import styles from "./TelephoneForm.module.css";
 
 const socket = io("http://localhost:4000");
 function TelephoneForm(): JSX.Element {
+  console.log('Styles:', styles);
   const [inputError, setErrorMessage] = useState<string>("");
   const [selectedCodeCountry, setSelectedCodeCountry] = useState<string>(
     countries.codeCountries[1].code
@@ -56,7 +58,7 @@ function TelephoneForm(): JSX.Element {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <TelephoneSelector
         value={selectedCodeCountry}
         onChange={e => setSelectedCodeCountry(e.target.value)}
@@ -75,3 +77,4 @@ function TelephoneForm(): JSX.Element {
 }
 
 export default TelephoneForm;
+
