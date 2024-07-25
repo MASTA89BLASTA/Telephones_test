@@ -55,7 +55,7 @@ module.exports = {
     "jsx-a11y/label-has-associated-control": "off",
     "@typescript-eslint/no-misused-promises": "off",
   },
-  ignorePatterns: ['.eslintrc.cjs'],
+  ignorePatterns: ['.eslintrc.cjs', "webpack.config.js"],
   overrides: [
     {
       files: ['webpack.config.js'],

@@ -1,11 +1,10 @@
-
 {
   "name": "react-scratch",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.ts --open",
+    "start": "webpack-dev-server --config webpack.config.js --open",
     "build": "webpack --config webpack.config.ts"
   },
   "engines": {
@@ -38,6 +37,7 @@
     "@types/redux-devtools-extension": "^2.13.2",
     "babel-loader": "^8.0.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "css-loader": "^6.8.1",
     "eslint": "^8.44.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -47,17 +47,16 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
-    "css-loader": "^6.8.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.0",
     "react-dom": "^18.2.0",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.5.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.2.2",
-    "webpack": "5.88.2",
+    "typescript": "^5.5.4",
+    "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.2"
   },
   "babel": {
     "presets": [

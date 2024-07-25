@@ -1,29 +1,30 @@
 import React from 'react';
+import styles from './TelephoneInput.module.css';
 
 type TelephoneInputProps = {
   value: string,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  setErrorMessage: (message: string) => void;
+  setInputError: (message: string) => void;
 }
 
-function TelephoneInput({ value, onChange, setErrorMessage }: TelephoneInputProps): JSX.Element {
+function TelephoneInput({ value, onChange, setInputError }: TelephoneInputProps): JSX.Element {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const input = event.target.value.trim();
     if (input === "") {
-      setErrorMessage("Поле ввода не может быть пустым");
+      setInputError("Поле ввода не может быть пустым");
     } else if (!/^\d+$/.test(input)) {
-      setErrorMessage("Можно ввести только цифры");
+      setInputError("Можно ввести только цифры");
     } else if (input.length < 3 || input.length > 10) {
-      setErrorMessage("Введите от 3 до 10 чисел");
+      setInputError("Введите от 3 до 10 чисел");
     } else {
-      setErrorMessage(""); 
+      setInputError(""); 
     }
     onChange(event);
   };
   
   return (
-    <input type="text" value={value} onChange={handleChange} />
+    <input className={styles.input} type="text" value={value} onChange={handleChange} />
   );
 };
 

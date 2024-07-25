@@ -11,8 +11,7 @@ import styles from "./TelephoneForm.module.css";
 
 const socket = io("http://localhost:4000");
 function TelephoneForm(): JSX.Element {
-  console.log('Styles:', styles);
-  const [inputError, setErrorMessage] = useState<string>("");
+  const [inputError, setInputError] = useState<string>("");
   const [selectedCodeCountry, setSelectedCodeCountry] = useState<string>(
     countries.codeCountries[1].code
   );
@@ -34,12 +33,16 @@ function TelephoneForm(): JSX.Element {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
     if (inputError) {
-      setErrorMessage(inputError);
       return;
     }
     const selectedCountry: Telephone | undefined = countries.codeCountries.find(
       (country: Telephone) => country.code === selectedCodeCountry
     );
+
+    if (!number) {
+      setInputError("Поле ввода не может быть пустым");
+      return;
+    }
 
     const newTelephone: Telephone = {
       code: selectedCountry.code,
@@ -51,25 +54,28 @@ function TelephoneForm(): JSX.Element {
     try {
       socket.emit("message", newTelephone);
       setTelephoneNumber("");
-      setErrorMessage("");
+      setInputError("");
     } catch (error) {
-      setErrorMessage("Ошибка при отправке данных");
+      setInputError("Ошибка при отправке данных");
     }
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <TelephoneSelector
-        value={selectedCodeCountry}
-        onChange={e => setSelectedCodeCountry(e.target.value)}
-      />
-      <TelephoneInput
-        value={number}
-        onChange={e => setTelephoneNumber(e.target.value)}
-        setErrorMessage={setErrorMessage}
-      />
+      <label className={styles.label}>Введите номер телефона</label>
+      <div className={styles.divider}>
+        <TelephoneSelector
+          value={selectedCodeCountry}
+          onChange={e => setSelectedCodeCountry(e.target.value)}
+        />
+        <TelephoneInput
+          value={number}
+          onChange={e => setTelephoneNumber(e.target.value)}
+          setInputError={setInputError}
+        />
+      </div>
       <TelephoneButton />
-      <div className="" style={{ color: "red" }}>
+      <div className={styles.error} >
         {inputError}
       </div>
     </form>
@@ -77,4 +83,3 @@ function TelephoneForm(): JSX.Element {
 }
 
 export default TelephoneForm;
-
