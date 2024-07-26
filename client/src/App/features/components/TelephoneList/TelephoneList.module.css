@@ -1,0 +1,48 @@
+.list {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #000000;
+  border-radius: 8px 8px 0px 0px;
+  align-items: center;
+  height: 50px;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #d3b68e;
+  color: #000000;
+}
+.row__index, .row__number, .row__country, .row__flag {
+  border-right: 1px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  letter-spacing: 1.2px;
+}
+
+.row__index {
+  width: 10%; 
+}
+.row__number {
+  width: 50%;
+}
+
+.row__country {
+  width: 30%;
+}
+
+.row__flag {
+  width: 10%;
+  border: none;
+}
+
+.ul {
+  margin: 0;
+  padding: 0;
+}

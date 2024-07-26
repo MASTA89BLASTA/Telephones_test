@@ -1,0 +1,35 @@
+.item {
+  list-style-type: none;
+  width: 498px;
+  border: 1px solid black;
+  border-top: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.index, .number, .country, .flag {
+  border-right: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.index {
+  width: 10%; 
+
+}
+
+.number { 
+  width: 50%;
+}
+
+.country {
+  width: 30%;
+}
+
+.flag {
+  width: 10%;
+  border: none;
+}
