@@ -46,7 +46,7 @@ function TelephoneList(): JSX.Element {
           </ul>
         </>
       ) : (
-        <h1>No Telephones</h1>
+        <h1 className={styles.h1}>No Telephones</h1>
       )}
     </div>
   );
